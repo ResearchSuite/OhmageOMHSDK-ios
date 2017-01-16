@@ -5,6 +5,10 @@
 [![License](https://img.shields.io/cocoapods/l/OhmageOMHSDK.svg?style=flat)](http://cocoapods.org/pods/OhmageOMHSDK)
 [![Platform](https://img.shields.io/cocoapods/p/OhmageOMHSDK.svg?style=flat)](http://cocoapods.org/pods/OhmageOMHSDK)
 
+OhmageOMHSDK is data uploader for [ohmage-OMH](https://github.com/smalldatalab/omh-dsu).
+
+**This project is currently experimental and will be changing rapidly. You probably shouldn't use it yet!**
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
@@ -22,8 +26,8 @@ pod "OhmageOMHSDK"
 
 ## Author
 
-jdkizer9, james.kizer@gmail.com
+James Kizer @ Cornell Tech Foundry
 
 ## License
 
-OhmageOMHSDK is available under the MIT license. See the LICENSE file for more info.
+OhmageOMHSDK is available under the Apache 2.0 license. See the LICENSE file for more info.
