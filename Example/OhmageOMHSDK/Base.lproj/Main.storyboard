@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IwU-8C-Xo0">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Tab Bar Controller-->
+        <scene sceneID="na8-ol-yqV">
+            <objects>
+                <tabBarController id="IwU-8C-Xo0" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="EnI-iz-TZm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="viewControllers" id="ONR-Et-Uqc"/>
+                        <segue destination="CLK-jL-isi" kind="relationship" relationship="viewControllers" id="vwK-it-Ngp"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zrN-CR-N7d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-857" y="383"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="3zk-Ua-eL8">
+            <objects>
+                <viewController id="CLK-jL-isi" customClass="LogViewController" customModule="OhmageOMHSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BeL-d2-1VQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="hdv-gq-GBF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KjT-4G-m4m">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4d4-Zy-MeB">
+                                <rect key="frame" x="154" y="580" width="66" height="30"/>
+                                <state key="normal" title="Clear Log"/>
+                                <connections>
+                                    <action selector="clearLogPressed:" destination="CLK-jL-isi" eventType="touchUpInside" id="k3A-K4-Cef"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="24u-9i-0b6">
+                                <rect key="frame" x="0.0" y="28" width="375" height="544"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4d4-Zy-MeB" firstAttribute="centerX" secondItem="KjT-4G-m4m" secondAttribute="centerX" id="0Hj-pn-I8a"/>
+                            <constraint firstItem="4d4-Zy-MeB" firstAttribute="top" secondItem="24u-9i-0b6" secondAttribute="bottom" constant="8" id="9Qj-1i-sx5"/>
+                            <constraint firstItem="24u-9i-0b6" firstAttribute="width" secondItem="KjT-4G-m4m" secondAttribute="width" id="9uT-xy-3Ls"/>
+                            <constraint firstItem="24u-9i-0b6" firstAttribute="centerX" secondItem="KjT-4G-m4m" secondAttribute="centerX" id="eIY-73-bKu"/>
+                            <constraint firstItem="hdv-gq-GBF" firstAttribute="top" secondItem="4d4-Zy-MeB" secondAttribute="bottom" constant="8" id="hYf-nj-VYA"/>
+                            <constraint firstItem="24u-9i-0b6" firstAttribute="top" secondItem="BeL-d2-1VQ" secondAttribute="bottom" constant="8" id="srH-Q5-EwD"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="PzW-9T-Zy6"/>
+                    <connections>
+                        <outlet property="logTextView" destination="24u-9i-0b6" id="tSv-U3-9C6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IzD-fG-9hs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="77.599999999999994" y="833.43328335832086"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="OhmageOMHSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qCH-U6-QSz">
+                                <rect key="frame" x="164" y="66" width="47" height="30"/>
+                                <state key="normal" title="Sign In"/>
+                                <connections>
+                                    <action selector="signInAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="CSR-fJ-U5K"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ag7-cE-Fhu">
+                                <rect key="frame" x="145" y="246" width="85" height="30"/>
+                                <state key="normal" title="Upload PAM"/>
+                                <connections>
+                                    <action selector="uploadPAMAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ncw-Zo-os1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5uA-cF-1np">
+                                <rect key="frame" x="158" y="156" width="60" height="30"/>
+                                <state key="normal" title="Sign Out"/>
+                                <connections>
+                                    <action selector="signOutAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="NON-kE-Eio"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pending item count: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ifO-cX-fEk">
+                                <rect key="frame" x="104" y="577" width="168" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nPW-rM-nUg">
+                                <rect key="frame" x="142" y="426" width="92" height="30"/>
+                                <state key="normal" title="Force Upload"/>
+                                <connections>
+                                    <action selector="forceUploadAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Xzt-c3-e6g"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="V3A-uq-yF4">
+                                <rect key="frame" x="0.0" y="464" width="375" height="105"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3og-3j-PLU">
+                                <rect key="frame" x="140" y="336" width="95" height="30"/>
+                                <state key="normal" title="Upload Image"/>
+                                <connections>
+                                    <action selector="uploadImageAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="FCX-sc-fNg"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="ifO-cX-fEk" secondAttribute="bottom" constant="20" id="0lU-Qx-qmb"/>
+                            <constraint firstItem="nPW-rM-nUg" firstAttribute="top" secondItem="3og-3j-PLU" secondAttribute="bottom" constant="60" id="5EE-Vz-6C0"/>
+                            <constraint firstItem="5uA-cF-1np" firstAttribute="top" secondItem="qCH-U6-QSz" secondAttribute="bottom" constant="60" id="A6j-OE-Rf2"/>
+                            <constraint firstItem="ag7-cE-Fhu" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="BZj-v1-tjL"/>
+                            <constraint firstItem="5uA-cF-1np" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="MUL-DW-q09"/>
+                            <constraint firstItem="ifO-cX-fEk" firstAttribute="top" secondItem="V3A-uq-yF4" secondAttribute="bottom" constant="8" id="Nu9-Cd-4dT"/>
+                            <constraint firstItem="V3A-uq-yF4" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="PL3-xc-sb5"/>
+                            <constraint firstItem="3og-3j-PLU" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="TOv-kD-f15"/>
+                            <constraint firstItem="3og-3j-PLU" firstAttribute="top" secondItem="ag7-cE-Fhu" secondAttribute="bottom" constant="60" id="Yhd-iJ-XAb"/>
+                            <constraint firstItem="qCH-U6-QSz" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="46" id="fh7-aR-7tA"/>
+                            <constraint firstItem="V3A-uq-yF4" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" id="hs6-h8-6ae"/>
+                            <constraint firstItem="qCH-U6-QSz" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="jVT-yh-rsN"/>
+                            <constraint firstItem="ifO-cX-fEk" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="liU-km-LHj"/>
+                            <constraint firstItem="nPW-rM-nUg" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="lyg-ql-qCf"/>
+                            <constraint firstItem="ag7-cE-Fhu" firstAttribute="top" secondItem="5uA-cF-1np" secondAttribute="bottom" constant="60" id="rIk-XE-znb"/>
+                            <constraint firstItem="V3A-uq-yF4" firstAttribute="top" secondItem="nPW-rM-nUg" secondAttribute="bottom" constant="8" id="zgk-rP-JAh"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="L9I-5x-FQe"/>
+                    <connections>
+                        <outlet property="itemCountLabel" destination="ifO-cX-fEk" id="Ony-Bm-6FJ"/>
+                        <outlet property="latestErrorTextView" destination="V3A-uq-yF4" id="Bxf-CK-efW"/>
+                        <outlet property="signInButton" destination="qCH-U6-QSz" id="ILa-d4-Vk5"/>
+                        <outlet property="signOutButton" destination="5uA-cF-1np" id="f10-TU-iP9"/>
+                        <outlet property="uploadImageButton" destination="3og-3j-PLU" id="Ner-aq-vSR"/>
+                        <outlet property="uploadPAMButton" destination="ag7-cE-Fhu" id="lHt-hw-mzx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="119.1904047976012"/>
+        </scene>
+    </scenes>
+</document>
