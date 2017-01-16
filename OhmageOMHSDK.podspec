@@ -22,11 +22,11 @@ OhmageOMHSDK is data uploader for [ohmage-OMH](https://github.com/smalldatalab/o
 **This project is currently experimental and will be changing rapidly. You probably shouldn't use it yet!**
                        DESC
 
-  s.homepage         = 'https://github.com/cornelltech/OhmageOMHSDK'
+  s.homepage         = 'https://github.com/cornelltech/OhmageOMHSDK-ios'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => "Apache 2", :file => "LICENSE" }
   s.author           = { "James Kizer, Cornell Tech Foundry" => "jdk288 at cornell dot edu" }
-  s.source           = { :git => 'https://github.com/cornelltech/OhmageOMHSDK.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/cornelltech/OhmageOMHSDK-ios.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '9.0'
