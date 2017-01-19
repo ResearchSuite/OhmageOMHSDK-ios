@@ -6,6 +6,7 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
+
 import Foundation
 import OMHClient
 import SecureQueue
@@ -46,6 +47,8 @@ public class OhmageOMHManager: NSObject {
     
     let reachabilityManager: NetworkReachabilityManager
     
+    var protectedDataAvaialbleObserver: NSObjectProtocol!
+    
     public init?(baseURL: String, clientID: String, clientSecret: String, queueStorageDirectory: String, store: OhmageOMHSDKCredentialStore) {
         
         self.uploadQueue = DispatchQueue(label: "UploadQueue")
@@ -75,6 +78,10 @@ public class OhmageOMHManager: NSObject {
         
         super.init()
         
+        //set up listeners for the following events:
+        // 1) we have access to the internet
+        // 2) we have access to protected data
+        
         let startUploading = self.startUploading
         
         reachabilityManager.listener = { [weak self] status in
@@ -90,8 +97,23 @@ public class OhmageOMHManager: NSObject {
         if self.isSignedIn {
             reachabilityManager.startListening()
         }
+  
+        
+        self.protectedDataAvaialbleObserver = NotificationCenter.default.addObserver(forName: .UIApplicationProtectedDataDidBecomeAvailable, object: nil, queue: nil) { [weak self](notification) in
+            do {
+                try startUploading()
+            } catch let error as NSError {
+                self?.logger?.log("error occurred when starting upload after device unlock: \(error.localizedDescription)")
+                debugPrint(error)
+            }
+            
+        }
         
         
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self.protectedDataAvaialbleObserver)
     }
     
     public func signIn(username: String, password: String, completion: @escaping ((Error?) -> ())) {

@@ -14,7 +14,9 @@ final class ImageSample: OMHMediaDataPointBase {
         
         super.init()
         
-        let attachment = OMHMediaAttachment(fileName: "image", fileURL: imageURL, mimeType: "image/png")
+        let uuid = UUID().uuidString
+        
+        let attachment = OMHMediaAttachment(fileName: "\(uuid).png", fileURL: imageURL, mimeType: "image/png")
         self.addAttachment(attachment: attachment)
         
     }

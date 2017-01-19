@@ -15,7 +15,9 @@ final class ConsentSample: OMHMediaDataPointBase {
         
         super.init()
         
-        let attachment = OMHMediaAttachment(fileName: "consent", fileURL: consentURL, mimeType: "application/pdf")
+        let uuid = UUID().uuidString
+        
+        let attachment = OMHMediaAttachment(fileName: "\(uuid).pdf", fileURL: consentURL, mimeType: "application/pdf")
         self.addAttachment(attachment: attachment)
         
     }
