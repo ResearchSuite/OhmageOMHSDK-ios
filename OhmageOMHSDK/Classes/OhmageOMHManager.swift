@@ -309,15 +309,35 @@ public class OhmageOMHManager: NSObject {
                                 self.upload()
                                 return
                                 
+                            case .some(OMHClientError.badGatewayError):
+                                self.logger?.log("bad gateway")
+                                return
+                                
+                                
                             default:
+                                
+                                if let nsError = error as? NSError {
+                                    switch (nsError.code) {
+                                    case NSURLErrorNetworkConnectionLost:
+                                        self.logger?.log("We have an internet connecction, but cannot connect to the server. Is it down?")
+                                        
+                                        return
+                                        
+                                    default:
+                                        break
+                                        
+                                    }
+                                    
+                                }
+                                
                                 debugPrint(error)
                                 //if we have no internet access, don't try to reload
                                 self.logger?.log("other error: retry \(error)")
+                                
                                 if self.reachabilityManager.isReachable {
-                                    self.upload()
+//                                    self.upload()
                                     return
                                 }
-                                
                                 
                                 
                             }
@@ -440,11 +460,32 @@ public class OhmageOMHManager: NSObject {
                             self.uploadFromMemory()
                             return
                             
+                        case .some(OMHClientError.badGatewayError):
+                            self.logger?.log("bad gateway")
+                            return
+                            
                         default:
+                            
+                            if let nsError = error as? NSError {
+                                switch (nsError.code) {
+                                case NSURLErrorNetworkConnectionLost:
+                                    self.logger?.log("We have an internet connecction, but cannot connect to the server. Is it down?")
+                                    
+                                    return
+                                    
+                                default:
+                                    break
+                                    
+                                }
+                                
+                            }
+                            
+                            
+                            //maybe the default should not be try again?
                             debugPrint(error)
                             self.logger?.log("other error: retry \(error)")
                             if self.reachabilityManager.isReachable {
-                                self.uploadFromMemory()
+//                                self.uploadFromMemory()
                                 return
                             }
                             

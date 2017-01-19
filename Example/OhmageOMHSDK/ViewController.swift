@@ -157,19 +157,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBAction func uploadImageAction(_ sender: Any) {
         
-//        let consentFilePath: String = Bundle.main.path(forResource: "consent", ofType: "pdf")!
-//        let consentURL:URL = URL(fileURLWithPath: consentFilePath)
-//        let consent = ConsentSample(consentURL: consentURL)
-//        
-//        let consentLog = "Adding datapoint: \(consent.toDict().debugDescription)"
-//        LogManager.sharedInstance.log(consentLog)
-//        
-//        OhmageManager.sharedInstance.ohmageManager.addDatapoint(datapoint: consent, completion: { (error) in
-//            self.latestError = error
-//            DispatchQueue.main.async {
-//                self.updateUI()
-//            }
-//        })
+
         
         let imageFilePath: String = Bundle.main.path(forResource: "a", ofType: "png")!
         let imageURL:URL = URL(fileURLWithPath: imageFilePath)
@@ -185,6 +173,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             }
         })
     }
+    @IBAction func uploadConsentAction(_ sender: Any) {
+        let consentFilePath: String = Bundle.main.path(forResource: "consent", ofType: "pdf")!
+        let consentURL:URL = URL(fileURLWithPath: consentFilePath)
+        let consent = ConsentSample(consentURL: consentURL)
+
+        let consentLog = "Adding datapoint: \(consent.toDict().debugDescription)"
+        LogManager.sharedInstance.log(consentLog)
+
+        OhmageManager.sharedInstance.ohmageManager.addDatapoint(datapoint: consent, completion: { (error) in
+            self.latestError = error
+            DispatchQueue.main.async {
+                self.updateUI()
+            }
+        })
+    }
+    
     
     @IBAction func forceUploadAction(_ sender: Any) {
         
