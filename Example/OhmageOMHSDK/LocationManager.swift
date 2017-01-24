@@ -7,6 +7,7 @@
 //
 
 import CoreLocation
+import OhmageOMHSDK
 
 class LocationManager: NSObject, CLLocationManagerDelegate {
     
@@ -92,7 +93,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
             let log2 = "Adding datapoint: \(locationSample.toDict().debugDescription)"
             LogManager.sharedInstance.log(log2)
             
-            OhmageManager.sharedInstance.ohmageManager.addDatapoint(datapoint: locationSample, completion: { (error) in
+            OhmageOMHManager.shared.addDatapoint(datapoint: locationSample, completion: { (error) in
                 
                 debugPrint(error)
                 
@@ -115,7 +116,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         let log2 = "Adding datapoint: \(logicalLocation.toDict().debugDescription)"
         LogManager.sharedInstance.log(log2)
         
-        OhmageManager.sharedInstance.ohmageManager.addDatapoint(datapoint: logicalLocation, completion: { (error) in
+        OhmageOMHManager.shared.addDatapoint(datapoint: logicalLocation, completion: { (error) in
             
             debugPrint(error)
             
@@ -138,7 +139,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         LogManager.sharedInstance.log(log2)
         
         
-        OhmageManager.sharedInstance.ohmageManager.addDatapoint(datapoint: logicalLocation, completion: { (error) in
+        OhmageOMHManager.shared.addDatapoint(datapoint: logicalLocation, completion: { (error) in
             
             debugPrint(error)
             
@@ -164,7 +165,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         let log2 = "Adding datapoint: \(visitSample.toDict().debugDescription)"
         LogManager.sharedInstance.log(log2)
         
-        OhmageManager.sharedInstance.ohmageManager.addDatapoint(datapoint: visitSample, completion: { (error) in
+        OhmageOMHManager.shared.addDatapoint(datapoint: visitSample, completion: { (error) in
             
             debugPrint(error)
             

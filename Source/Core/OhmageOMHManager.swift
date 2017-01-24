@@ -49,7 +49,32 @@ public class OhmageOMHManager: NSObject {
     
     var protectedDataAvaialbleObserver: NSObjectProtocol!
     
-    public init?(baseURL: String, clientID: String, clientSecret: String, queueStorageDirectory: String, store: OhmageOMHSDKCredentialStore) {
+    static private let staticQueue = DispatchQueue(label: "staticQueue")
+    
+    static public var shared: OhmageOMHManager! {
+        return staticQueue.sync {
+            _sharedManager
+        }
+    }
+    
+    static private var _sharedManager: OhmageOMHManager?
+    
+    
+    //returns true if configured
+    static public func config(baseURL: String, clientID: String, clientSecret: String, queueStorageDirectory: String, store: OhmageOMHSDKCredentialStore, logger: OhmageOMHLogger? = nil) -> Bool {
+        return staticQueue.sync {
+            guard _sharedManager == nil,
+                let newManager = OhmageOMHManager(baseURL: baseURL, clientID: clientID, clientSecret: clientSecret, queueStorageDirectory: queueStorageDirectory, store: store) else {
+                    return false
+            }
+            
+            _sharedManager = newManager
+            _sharedManager?.logger = logger
+            return true
+        }
+    }
+    
+    private init?(baseURL: String, clientID: String, clientSecret: String, queueStorageDirectory: String, store: OhmageOMHSDKCredentialStore) {
         
         self.uploadQueue = DispatchQueue(label: "UploadQueue")
         

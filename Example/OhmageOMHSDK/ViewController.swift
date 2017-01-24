@@ -11,12 +11,16 @@ import OhmageOMHSDK
 import CoreLocation
 import ResearchKit
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate, ORKTaskViewControllerDelegate {
+
+    
+
     
     //need to add a delegate method to notify application that a datapoint
     //was successfully uploaded
     //note that this
     
+    static let LoginTaskIdentifier = "login task identifier"
     
     
     @IBOutlet weak var signInButton: UIButton!
@@ -45,7 +49,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 //        // Start significant-change location updates
 //        self.locationManager.startMonitoringSignificantLocationChanges()
         
-        OhmageManager.sharedInstance.ohmageManager.onDatapointUploaded = { _ in
+        OhmageOMHManager.shared.onDatapointUploaded = { _ in
             self.updateUI()
         }
         
@@ -58,98 +62,30 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func updateUI() {
-        self.signInButton.isEnabled = !OhmageManager.sharedInstance.ohmageManager.isSignedIn
-        self.signOutButton.isEnabled = OhmageManager.sharedInstance.ohmageManager.isSignedIn
+        self.signInButton.isEnabled = !OhmageOMHManager.shared.isSignedIn
+        self.signOutButton.isEnabled = OhmageOMHManager.shared.isSignedIn
         
         self.latestErrorTextView.text = self.latestError.debugDescription
-        self.itemCountLabel.text = "Pending item count \(OhmageManager.sharedInstance.ohmageManager.queueItemCount)"
+        self.itemCountLabel.text = "Pending item count \(OhmageOMHManager.shared.queueItemCount)"
         
     }
-    
-//    func sendDatapoints(ohmageManager: OhmageOMHManager) {
-//        let pam = PAMSample()
-//        pam.affectArousal = 1
-//        pam.affectValence = 2
-//        pam.negativeAffect = 3
-//        pam.positiveAffect = 4
-//        pam.mood = "awesome!!"
-//        
-//        ohmageManager.addDatapoint(datapoint: pam, completion: { (error) in
-//            self.latestError = error
-//        })
-//        
-//        let filePath: String = Bundle.main.path(forResource: "consent", ofType: "pdf")!
-//        let consentURL:URL = URL(fileURLWithPath: filePath)
-//        let consent = ConsentSample(consentURL: consentURL)
-//        
-//        ohmageManager.addDatapoint(datapoint: consent, completion: { (error) in
-//            self.latestError = error
-//        })
-//        
-//        let imageFilePath: String = Bundle.main.path(forResource: "a", ofType: "png")!
-//        let imageURL:URL = URL(fileURLWithPath: imageFilePath)
-//        let image = ImageSample(imageURL: imageURL)
-//        
-//        ohmageManager.addDatapoint(datapoint: image, completion: { (error) in
-//            self.latestError = error
-//        })
-//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     @IBAction func signInAction(_ sender: Any) {
         
         let log = "Signing in"
         LogManager.sharedInstance.log(log)
         
-        let identityFieldAnswerFormat = ORKTextAnswerFormat()
+        let loginStep = CTFOhmageLoginStep(identifier: "loginStepIdentifier")
         
-        identityFieldAnswerFormat.keyboardType = UIKeyboardType.emailAddress
-        identityFieldAnswerFormat.multipleLines = false
-        identityFieldAnswerFormat.spellCheckingType = UITextSpellCheckingType.no
-        identityFieldAnswerFormat.autocapitalizationType = UITextAutocapitalizationType.none;
-        identityFieldAnswerFormat.autocorrectionType = UITextAutocorrectionType.no;
-        
-        
-        let passwordFieldAnswerFormat = ORKTextAnswerFormat()
-        
-        passwordFieldAnswerFormat.keyboardType = UIKeyboardType.default
-        passwordFieldAnswerFormat.isSecureTextEntry = true
-        passwordFieldAnswerFormat.multipleLines = false
-        passwordFieldAnswerFormat.spellCheckingType = UITextSpellCheckingType.no
-        passwordFieldAnswerFormat.autocapitalizationType = UITextAutocapitalizationType.none;
-        passwordFieldAnswerFormat.autocorrectionType = UITextAutocorrectionType.no;
-        
-        let loginStep = CTFLoginStep(identifier: "loginStepIdentifier",
-                                     title: "Log in",
-                                     text: "Please log in",
-                                     identityFieldAnswerFormat: identityFieldAnswerFormat,
-                                     passwordFieldAnswerFormat: passwordFieldAnswerFormat,
-                                     loginViewControllerClass: LoginStepViewController.self,
-                                     forgotPasswordButtonTitle: "Forgot Password?")
-        
-        let task = ORKOrderedTask(identifier: "login task identifier", steps: [loginStep])
+        let task = ORKOrderedTask(identifier: ViewController.LoginTaskIdentifier, steps: [loginStep])
         let taskViewController = ORKTaskViewController(task: task, taskRun: nil)
+        taskViewController.delegate = self
         present(taskViewController, animated: true, completion: nil)
-        
-        
-//        let omhClientDetails = NSDictionary(contentsOfFile: Bundle.main.path(forResource: "OMHClient", ofType: "plist")!)
-//        
-//        guard let username = omhClientDetails?["username"] as? String,
-//            let password = omhClientDetails?["password"] as? String else {
-//                return
-//        }
-//        
-//        OhmageManager.sharedInstance.ohmageManager.signIn(username: username, password: password) { (error) in
-//            
-//            self.latestError = error
-//            DispatchQueue.main.async {
-//                self.updateUI()
-//            }
-//            
-//        }
         
     }
 
@@ -158,7 +94,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         let log = "Signing out"
         LogManager.sharedInstance.log(log)
         
-        OhmageManager.sharedInstance.ohmageManager.signOut { (error) in
+        OhmageOMHManager.shared.signOut { (error) in
             self.latestError = error
             DispatchQueue.main.async {
                 self.updateUI()
@@ -178,7 +114,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         let log = "Adding datapoint: \(pam.toDict().debugDescription)"
         LogManager.sharedInstance.log(log)
         
-        OhmageManager.sharedInstance.ohmageManager.addDatapoint(datapoint: pam, completion: { (error) in
+        OhmageOMHManager.shared.addDatapoint(datapoint: pam, completion: { (error) in
             self.latestError = error
             DispatchQueue.main.async {
                 self.updateUI()
@@ -198,7 +134,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         let log = "Adding datapoint: \(image.toDict().debugDescription)"
         LogManager.sharedInstance.log(log)
         
-        OhmageManager.sharedInstance.ohmageManager.addDatapoint(datapoint: image, completion: { (error) in
+        OhmageOMHManager.shared.addDatapoint(datapoint: image, completion: { (error) in
             self.latestError = error
             DispatchQueue.main.async {
                 self.updateUI()
@@ -213,7 +149,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         let consentLog = "Adding datapoint: \(consent.toDict().debugDescription)"
         LogManager.sharedInstance.log(consentLog)
 
-        OhmageManager.sharedInstance.ohmageManager.addDatapoint(datapoint: consent, completion: { (error) in
+        OhmageOMHManager.shared.addDatapoint(datapoint: consent, completion: { (error) in
             self.latestError = error
             DispatchQueue.main.async {
                 self.updateUI()
@@ -225,13 +161,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBAction func forceUploadAction(_ sender: Any) {
         
         do {
-            try OhmageManager.sharedInstance.ohmageManager.startUploading()
+            try OhmageOMHManager.shared.startUploading()
         } catch let error {
             debugPrint(error)
         }
         
         self.updateUI()
         
+    }
+    
+    
+    //MARK: ORKTaskViewControllerDelegate
+    public func taskViewController(_ taskViewController: ORKTaskViewController, didFinishWith reason: ORKTaskViewControllerFinishReason, error: Error?) {
+        taskViewController.dismiss(animated: true, completion: nil)
     }
     
 }

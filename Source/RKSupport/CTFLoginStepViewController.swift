@@ -10,6 +10,8 @@ import UIKit
 import ResearchKit
 
 open class CTFLoginStepViewController: ORKFormStepViewController {
+    
+    public typealias ActionCompletion = (Bool) -> ()
 
     override open func viewDidLoad() {
         
@@ -20,17 +22,9 @@ open class CTFLoginStepViewController: ORKFormStepViewController {
             self.skipButtonTitle = step.forgotPasswordButtonTitle
         }
         
-        
-        
     }
     
     override open func goForward() {
-        
-        //get username result
-        //get password result
-        
-        debugPrint(self.step)
-        debugPrint(self.result)
         
         guard let loginStep = self.step as? CTFLoginStep,
             let loginStepResult = self.result else {
@@ -40,16 +34,21 @@ open class CTFLoginStepViewController: ORKFormStepViewController {
         let username = (loginStepResult.result(forIdentifier: CTFLoginStep.CTFLoginStepIdentity) as? ORKTextQuestionResult)?.answer as? String
         let password = (loginStepResult.result(forIdentifier: CTFLoginStep.CTFLoginStepPassword) as? ORKTextQuestionResult)?.answer as? String
         
-        debugPrint(loginStep)
-        debugPrint(loginStepResult)
-        
         switch (username, password) {
             
         case (.some(let username), .some(let password)):
-            self.loginButtonAction(username: username, password: password)
+            self.loginButtonAction(username: username, password: password) { moveForward in
+                if moveForward {
+                    super.goForward()
+                }
+            }
             
         default:
-            self.forgotPasswordButtonAction()
+            self.forgotPasswordButtonAction() { moveForward in
+                if moveForward {
+                    super.goForward()
+                }
+            }
         }
         
         
@@ -58,15 +57,15 @@ open class CTFLoginStepViewController: ORKFormStepViewController {
     }
     
     
-    open func loginButtonAction(username: String, password: String) {
+    open func loginButtonAction(username: String, password: String, completion: @escaping ActionCompletion) {
         
-        self.goForward()
-        
+        completion(true)
+    
     }
     
-    open func forgotPasswordButtonAction() {
+    open func forgotPasswordButtonAction(completion: @escaping ActionCompletion) {
         
-        self.goForward()
+        completion(true)
         
     }
     

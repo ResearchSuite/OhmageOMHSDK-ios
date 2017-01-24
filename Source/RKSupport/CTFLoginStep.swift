@@ -14,6 +14,31 @@ open class CTFLoginStep: ORKFormStep {
     public static let CTFLoginStepIdentity = "CTFLoginStepIdentity"
     public static let CTFLoginStepPassword = "CTFLoginStepPassword"
     
+    static public func usernameAnswerFormat() -> ORKTextAnswerFormat {
+        let answerFormat = ORKTextAnswerFormat()
+        answerFormat.keyboardType = UIKeyboardType.emailAddress
+        answerFormat.multipleLines = false
+        answerFormat.spellCheckingType = UITextSpellCheckingType.no
+        answerFormat.autocapitalizationType = UITextAutocapitalizationType.none;
+        answerFormat.autocorrectionType = UITextAutocorrectionType.no;
+        
+        return answerFormat
+    }
+    
+    static public func passwordAnswerFormat() -> ORKTextAnswerFormat {
+        let answerFormat = ORKTextAnswerFormat()
+        
+        answerFormat.keyboardType = UIKeyboardType.default
+        answerFormat.isSecureTextEntry = true
+        answerFormat.multipleLines = false
+        answerFormat.spellCheckingType = UITextSpellCheckingType.no
+        answerFormat.autocapitalizationType = UITextAutocapitalizationType.none;
+        answerFormat.autocorrectionType = UITextAutocorrectionType.no;
+        
+        return answerFormat
+    }
+    
+    
     open func stepViewControllerClass() -> AnyClass {
         return self.loginViewControllerClass
     }
@@ -27,10 +52,10 @@ open class CTFLoginStep: ORKFormStep {
          title: String?,
          text: String?,
          identityFieldName: String = "Username",
-         identityFieldAnswerFormat: ORKAnswerFormat,
+         identityFieldAnswerFormat: ORKAnswerFormat = CTFLoginStep.usernameAnswerFormat(),
          passwordFieldName: String = "Password",
-         passwordFieldAnswerFormat: ORKAnswerFormat,
-         loginViewControllerClass: AnyClass,
+         passwordFieldAnswerFormat: ORKAnswerFormat = CTFLoginStep.passwordAnswerFormat(),
+         loginViewControllerClass: AnyClass = CTFLoginStepViewController.self,
          loginButtonTitle: String = "Login",
          forgotPasswordButtonTitle: String?) {
         

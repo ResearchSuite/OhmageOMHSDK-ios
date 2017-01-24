@@ -1,16 +1,15 @@
 //
-//  LoginStepViewController.swift
-//  OhmageOMHSDK
+//  CTFOhmageLoginStepViewController.swift
+//  Pods
 //
 //  Created by James Kizer on 1/24/17.
-//  Copyright © 2017 CocoaPods. All rights reserved.
+//
 //
 
 import UIKit
-import OhmageOMHSDK
 
-class LoginStepViewController: CTFLoginStepViewController {
-
+open class CTFOhmageLoginStepViewController: CTFLoginStepViewController {
+    
     open override func loginButtonAction(username: String, password: String, completion: @escaping ActionCompletion) {
         
         OhmageOMHManager.shared.signIn(username: username, password: password) { (error) in
@@ -46,5 +45,5 @@ class LoginStepViewController: CTFLoginStepViewController {
         completion(false)
         
     }
-    
+
 }

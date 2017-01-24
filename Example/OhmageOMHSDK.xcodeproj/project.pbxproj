@@ -16,7 +16,6 @@
 		AF9A1B5A309641454E199DEA /* Pods_OhmageOMHSDK_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC6880D9063A743760810E34 /* Pods_OhmageOMHSDK_Example.framework */; };
 		E20AF91D1E289789008B7917 /* PAMSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20AF91C1E289789008B7917 /* PAMSample.swift */; };
 		E220AD5A1E2BEA4900DDF2B0 /* OMHClient.plist in Resources */ = {isa = PBXBuildFile; fileRef = E220AD591E2BEA4900DDF2B0 /* OMHClient.plist */; };
-		E220AD5C1E2C244700DDF2B0 /* OhmageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E220AD5B1E2C244700DDF2B0 /* OhmageManager.swift */; };
 		E220AD5E1E2C278300DDF2B0 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E220AD5D1E2C278300DDF2B0 /* LocationManager.swift */; };
 		E220AD601E2C28B800DDF2B0 /* LocationSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = E220AD5F1E2C28B800DDF2B0 /* LocationSample.swift */; };
 		E220AD621E2C2B0500DDF2B0 /* LogicalLocationSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = E220AD611E2C2B0500DDF2B0 /* LogicalLocationSample.swift */; };
@@ -25,6 +24,7 @@
 		E220AD6B1E2D058700DDF2B0 /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E220AD6A1E2D058700DDF2B0 /* LogViewController.swift */; };
 		E220AD6D1E2D1C8900DDF2B0 /* VisitSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = E220AD6C1E2D1C8900DDF2B0 /* VisitSample.swift */; };
 		E29BA8081E38040F00C3EE47 /* LoginStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29BA8071E38040F00C3EE47 /* LoginStepViewController.swift */; };
+		E29BA80A1E38187D00C3EE47 /* OhmageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29BA8091E38187D00C3EE47 /* OhmageStore.swift */; };
 		E2BF42DB1E29A99F00900701 /* ImageSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BF42DA1E29A99F00900701 /* ImageSample.swift */; };
 		E2BF42DD1E29A9B400900701 /* ConsentSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BF42DC1E29A9B400900701 /* ConsentSample.swift */; };
 		E2BF42E51E29AEF000900701 /* consent.pdf in Resources */ = {isa = PBXBuildFile; fileRef = E2BF42E41E29AEF000900701 /* consent.pdf */; };
@@ -62,7 +62,6 @@
 		D0FC9399D6875AC6A1DFDDF6 /* Pods-OhmageOMHSDK_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OhmageOMHSDK_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OhmageOMHSDK_Tests/Pods-OhmageOMHSDK_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		E20AF91C1E289789008B7917 /* PAMSample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PAMSample.swift; sourceTree = "<group>"; };
 		E220AD591E2BEA4900DDF2B0 /* OMHClient.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = OMHClient.plist; sourceTree = "<group>"; };
-		E220AD5B1E2C244700DDF2B0 /* OhmageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OhmageManager.swift; sourceTree = "<group>"; };
 		E220AD5D1E2C278300DDF2B0 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		E220AD5F1E2C28B800DDF2B0 /* LocationSample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSample.swift; sourceTree = "<group>"; };
 		E220AD611E2C2B0500DDF2B0 /* LogicalLocationSample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogicalLocationSample.swift; sourceTree = "<group>"; };
@@ -71,6 +70,7 @@
 		E220AD6A1E2D058700DDF2B0 /* LogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogViewController.swift; sourceTree = "<group>"; };
 		E220AD6C1E2D1C8900DDF2B0 /* VisitSample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisitSample.swift; sourceTree = "<group>"; };
 		E29BA8071E38040F00C3EE47 /* LoginStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginStepViewController.swift; sourceTree = "<group>"; };
+		E29BA8091E38187D00C3EE47 /* OhmageStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OhmageStore.swift; sourceTree = "<group>"; };
 		E2BF42DA1E29A99F00900701 /* ImageSample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSample.swift; sourceTree = "<group>"; };
 		E2BF42DC1E29A9B400900701 /* ConsentSample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsentSample.swift; sourceTree = "<group>"; };
 		E2BF42E41E29AEF000900701 /* consent.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = consent.pdf; sourceTree = "<group>"; };
@@ -143,7 +143,7 @@
 				E29BA8071E38040F00C3EE47 /* LoginStepViewController.swift */,
 				E2BF42DA1E29A99F00900701 /* ImageSample.swift */,
 				E2BF42DC1E29A9B400900701 /* ConsentSample.swift */,
-				E220AD5B1E2C244700DDF2B0 /* OhmageManager.swift */,
+				E29BA8091E38187D00C3EE47 /* OhmageStore.swift */,
 				E220AD5D1E2C278300DDF2B0 /* LocationManager.swift */,
 				E220AD681E2CFE4300DDF2B0 /* LogManager.swift */,
 				E220AD6A1E2D058700DDF2B0 /* LogViewController.swift */,
@@ -425,8 +425,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E220AD5C1E2C244700DDF2B0 /* OhmageManager.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				E29BA80A1E38187D00C3EE47 /* OhmageStore.swift in Sources */,
 				E29BA8081E38040F00C3EE47 /* LoginStepViewController.swift in Sources */,
 				E220AD601E2C28B800DDF2B0 /* LocationSample.swift in Sources */,
 				E220AD6B1E2D058700DDF2B0 /* LogViewController.swift in Sources */,
