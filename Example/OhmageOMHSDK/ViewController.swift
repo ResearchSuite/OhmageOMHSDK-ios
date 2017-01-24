@@ -9,6 +9,7 @@
 import UIKit
 import OhmageOMHSDK
 import CoreLocation
+import ResearchKit
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
     
@@ -103,21 +104,52 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         let log = "Signing in"
         LogManager.sharedInstance.log(log)
         
-        let omhClientDetails = NSDictionary(contentsOfFile: Bundle.main.path(forResource: "OMHClient", ofType: "plist")!)
+        let identityFieldAnswerFormat = ORKTextAnswerFormat()
         
-        guard let username = omhClientDetails?["username"] as? String,
-            let password = omhClientDetails?["password"] as? String else {
-                return
-        }
+        identityFieldAnswerFormat.keyboardType = UIKeyboardType.emailAddress
+        identityFieldAnswerFormat.multipleLines = false
+        identityFieldAnswerFormat.spellCheckingType = UITextSpellCheckingType.no
+        identityFieldAnswerFormat.autocapitalizationType = UITextAutocapitalizationType.none;
+        identityFieldAnswerFormat.autocorrectionType = UITextAutocorrectionType.no;
         
-        OhmageManager.sharedInstance.ohmageManager.signIn(username: username, password: password) { (error) in
-            
-            self.latestError = error
-            DispatchQueue.main.async {
-                self.updateUI()
-            }
-            
-        }
+        
+        let passwordFieldAnswerFormat = ORKTextAnswerFormat()
+        
+        passwordFieldAnswerFormat.keyboardType = UIKeyboardType.default
+        passwordFieldAnswerFormat.isSecureTextEntry = true
+        passwordFieldAnswerFormat.multipleLines = false
+        passwordFieldAnswerFormat.spellCheckingType = UITextSpellCheckingType.no
+        passwordFieldAnswerFormat.autocapitalizationType = UITextAutocapitalizationType.none;
+        passwordFieldAnswerFormat.autocorrectionType = UITextAutocorrectionType.no;
+        
+        let loginStep = CTFLoginStep(identifier: "loginStepIdentifier",
+                                     title: "Log in",
+                                     text: "Please log in",
+                                     identityFieldAnswerFormat: identityFieldAnswerFormat,
+                                     passwordFieldAnswerFormat: passwordFieldAnswerFormat,
+                                     loginViewControllerClass: LoginStepViewController.self,
+                                     forgotPasswordButtonTitle: "Forgot Password?")
+        
+        let task = ORKOrderedTask(identifier: "login task identifier", steps: [loginStep])
+        let taskViewController = ORKTaskViewController(task: task, taskRun: nil)
+        present(taskViewController, animated: true, completion: nil)
+        
+        
+//        let omhClientDetails = NSDictionary(contentsOfFile: Bundle.main.path(forResource: "OMHClient", ofType: "plist")!)
+//        
+//        guard let username = omhClientDetails?["username"] as? String,
+//            let password = omhClientDetails?["password"] as? String else {
+//                return
+//        }
+//        
+//        OhmageManager.sharedInstance.ohmageManager.signIn(username: username, password: password) { (error) in
+//            
+//            self.latestError = error
+//            DispatchQueue.main.async {
+//                self.updateUI()
+//            }
+//            
+//        }
         
     }
 

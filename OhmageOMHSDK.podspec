@@ -31,15 +31,20 @@ OhmageOMHSDK is data uploader for [ohmage-OMH](https://github.com/smalldatalab/o
 
   s.ios.deployment_target = '9.0'
 
-  s.source_files = 'OhmageOMHSDK/Classes/**/*'
+  s.subspec 'Core' do |core|
+    core.source_files = 'Source/Core/**/*'
+    core.dependency 'OMHClient', '~> 0.0'
+    core.dependency 'SecureQueue', '~> 0.0'
+    core.dependency 'Alamofire', '~> 4'
+  end
 
-  # s.resource_bundles = {
-  #   'OhmageOMHSDK' => ['OhmageOMHSDK/Assets/*.png']
-  # }
+  s.subspec 'RKSupport' do |core|
+    core.source_files = 'Source/RKSupport/**/*'
+    core.dependency 'ResearchKit', '~> 1.3.1'
+  end
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  s.dependency 'OMHClient', '~> 0.0'
-  s.dependency 'SecureQueue', '~> 0.0'
-  s.dependency 'Alamofire', '~> 4'
+  s.default_subspec = 'Core'
+
+  s.default_subspec = 'Core'
+
 end
