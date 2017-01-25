@@ -10,12 +10,16 @@ import UIKit
 
 open class CTFOhmageLoginStep: CTFLoginStep {
     
-    public init(identifier: String) {
+    public init(identifier: String,
+                title: String = "Log in",
+                text: String = "Please log in",
+                forgotPasswordButtonTitle: String = "Continue without logging in") {
+        
         super.init(identifier: identifier,
-                   title: "Log in",
-                   text: "Please log in",
+                   title: title,
+                   text: text,
                    loginViewControllerClass: CTFOhmageLoginStepViewController.self,
-                   forgotPasswordButtonTitle: "Forgot Password?")
+                   forgotPasswordButtonTitle: forgotPasswordButtonTitle)
     }
     
     required public init(coder aDecoder: NSCoder) {

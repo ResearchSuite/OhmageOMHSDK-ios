@@ -42,7 +42,7 @@ open class CTFOhmageLoginStepViewController: CTFLoginStepViewController {
     
     open override func forgotPasswordButtonAction(completion: @escaping ActionCompletion) {
         
-        completion(false)
+        completion(true)
         
     }
 
