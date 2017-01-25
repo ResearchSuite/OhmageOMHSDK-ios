@@ -25,7 +25,6 @@
 		E220AD6D1E2D1C8900DDF2B0 /* VisitSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = E220AD6C1E2D1C8900DDF2B0 /* VisitSample.swift */; };
 		E29BA80A1E38187D00C3EE47 /* OhmageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29BA8091E38187D00C3EE47 /* OhmageStore.swift */; };
 		E2BF42DB1E29A99F00900701 /* ImageSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BF42DA1E29A99F00900701 /* ImageSample.swift */; };
-		E2BF42DD1E29A9B400900701 /* ConsentSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BF42DC1E29A9B400900701 /* ConsentSample.swift */; };
 		E2BF42E51E29AEF000900701 /* consent.pdf in Resources */ = {isa = PBXBuildFile; fileRef = E2BF42E41E29AEF000900701 /* consent.pdf */; };
 		E2BF42E71E29AEF900900701 /* a.png in Resources */ = {isa = PBXBuildFile; fileRef = E2BF42E61E29AEF900900701 /* a.png */; };
 		FE0F05548A4B90B07233AC3A /* Pods_OhmageOMHSDK_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 450508E0EF691F4F1B14C757 /* Pods_OhmageOMHSDK_Tests.framework */; };
@@ -70,7 +69,6 @@
 		E220AD6C1E2D1C8900DDF2B0 /* VisitSample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisitSample.swift; sourceTree = "<group>"; };
 		E29BA8091E38187D00C3EE47 /* OhmageStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OhmageStore.swift; sourceTree = "<group>"; };
 		E2BF42DA1E29A99F00900701 /* ImageSample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSample.swift; sourceTree = "<group>"; };
-		E2BF42DC1E29A9B400900701 /* ConsentSample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsentSample.swift; sourceTree = "<group>"; };
 		E2BF42E41E29AEF000900701 /* consent.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = consent.pdf; sourceTree = "<group>"; };
 		E2BF42E61E29AEF900900701 /* a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = a.png; sourceTree = "<group>"; };
 		F157AAE7576364D4FE42917D /* Pods-OhmageOMHSDK_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OhmageOMHSDK_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OhmageOMHSDK_Tests/Pods-OhmageOMHSDK_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -139,7 +137,6 @@
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				E2BF42DA1E29A99F00900701 /* ImageSample.swift */,
-				E2BF42DC1E29A9B400900701 /* ConsentSample.swift */,
 				E29BA8091E38187D00C3EE47 /* OhmageStore.swift */,
 				E220AD5D1E2C278300DDF2B0 /* LocationManager.swift */,
 				E220AD681E2CFE4300DDF2B0 /* LogManager.swift */,
@@ -426,7 +423,6 @@
 				E29BA80A1E38187D00C3EE47 /* OhmageStore.swift in Sources */,
 				E220AD601E2C28B800DDF2B0 /* LocationSample.swift in Sources */,
 				E220AD6B1E2D058700DDF2B0 /* LogViewController.swift in Sources */,
-				E2BF42DD1E29A9B400900701 /* ConsentSample.swift in Sources */,
 				E220AD6D1E2D1C8900DDF2B0 /* VisitSample.swift in Sources */,
 				E220AD5E1E2C278300DDF2B0 /* LocationManager.swift in Sources */,
 				E20AF91D1E289789008B7917 /* PAMSample.swift in Sources */,

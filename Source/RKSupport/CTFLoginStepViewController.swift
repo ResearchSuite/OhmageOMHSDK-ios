@@ -61,20 +61,21 @@ open class CTFLoginStepViewController: ORKFormStepViewController {
         case (.some(let username), .some(let password)):
             self.loginButtonAction(username: username, password: password) { moveForward in
                 if moveForward {
-                    super.goForward()
+                    DispatchQueue.main.async {
+                        super.goForward()
+                    }
                 }
             }
             
         default:
             self.forgotPasswordButtonAction() { moveForward in
                 if moveForward {
-                    super.goForward()
+                    DispatchQueue.main.async {
+                        super.goForward()
+                    }
                 }
             }
         }
-        
-        
-        
         
     }
     
