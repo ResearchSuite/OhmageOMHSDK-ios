@@ -173,6 +173,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ORKTaskViewCo
     
     //MARK: ORKTaskViewControllerDelegate
     public func taskViewController(_ taskViewController: ORKTaskViewController, didFinishWith reason: ORKTaskViewControllerFinishReason, error: Error?) {
+        
+        if reason == ORKTaskViewControllerFinishReason.completed {
+            
+            debugPrint(taskViewController.result)
+    
+        }
+    
         taskViewController.dismiss(animated: true, completion: nil)
     }
     

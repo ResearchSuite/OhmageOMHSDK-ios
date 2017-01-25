@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ResearchKit
 
 open class CTFOhmageLoginStepViewController: CTFLoginStepViewController {
     
@@ -16,10 +17,11 @@ open class CTFOhmageLoginStepViewController: CTFLoginStepViewController {
             
             debugPrint(error)
             if error == nil {
+                self.loggedIn = true
                 completion(true)
             }
             else {
-                
+                self.loggedIn = false
                 DispatchQueue.main.async {
                     let alertController = UIAlertController(title: "Log in failed", message: "Username / Password are not valid", preferredStyle: UIAlertControllerStyle.alert)
                     
@@ -42,6 +44,7 @@ open class CTFOhmageLoginStepViewController: CTFLoginStepViewController {
     
     open override func forgotPasswordButtonAction(completion: @escaping ActionCompletion) {
         
+        self.loggedIn = false
         completion(true)
         
     }

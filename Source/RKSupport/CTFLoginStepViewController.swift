@@ -12,6 +12,9 @@ import ResearchKit
 open class CTFLoginStepViewController: ORKFormStepViewController {
     
     public typealias ActionCompletion = (Bool) -> ()
+    
+    public static let LoggedInResultIdentifier = "IsLoggedInResult"
+    public var loggedIn: Bool?
 
     override open func viewDidLoad() {
         
@@ -23,6 +26,25 @@ open class CTFLoginStepViewController: ORKFormStepViewController {
         }
         
     }
+    
+    override open var result: ORKStepResult? {
+        if let parent = super.result {
+            
+            if let loggedIn = loggedIn {
+                
+                let loggedInResult = ORKBooleanQuestionResult(identifier: CTFLoginStepViewController.LoggedInResultIdentifier)
+                loggedInResult.booleanAnswer = NSNumber.init(booleanLiteral: loggedIn)
+                
+                parent.results?.append(loggedInResult)
+            }
+            
+            return parent
+        }
+        else {
+            return nil
+        }
+    }
+
     
     override open func goForward() {
         
