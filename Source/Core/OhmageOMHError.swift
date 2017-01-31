@@ -12,5 +12,6 @@ public enum OhmageOMHError: Error {
     
     case alreadySignedIn
     case notSignedIn
+    case invalidSample
 
 }

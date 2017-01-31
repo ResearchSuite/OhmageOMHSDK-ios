@@ -15,7 +15,7 @@ open class ConsentSample: OMHMediaDataPointBase {
         return _fileName
     }
     
-    static open let schema = OMHSchema(
+    static private let schema = OMHSchema(
         name: "example-consent",
         version: "1.1",
         namespace: "cornell")

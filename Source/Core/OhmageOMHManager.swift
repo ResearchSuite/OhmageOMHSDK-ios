@@ -225,6 +225,11 @@ public class OhmageOMHManager: NSObject {
             return
         }
         
+        if !self.client.validateSample(sample: datapoint) {
+            completion(OhmageOMHError.invalidSample)
+            return
+        }
+        
         do {
             
             var elementDictionary: [String: Any] = [
