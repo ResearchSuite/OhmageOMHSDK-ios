@@ -5,6 +5,7 @@ target 'OhmageOMHSDK_Example' do
 
   pod 'OhmageOMHSDK', :path => '../'
   pod 'OhmageOMHSDK/RKSupport', :path => '../'
+  pod 'OhmageOMHSDK/RSRPSupport', :path => '../'
 
   pod 'ResearchKit', '~> 1.3'
 
