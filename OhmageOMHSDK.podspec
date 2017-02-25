@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'OhmageOMHSDK'
-  s.version          = '0.0.7'
+  s.version          = '0.1.0'
   s.summary          = 'OhmageOMHSDK is data uploader for ohmage-OMH.'
 
 # This description is used to generate tags and improve search results.
@@ -41,7 +41,7 @@ OhmageOMHSDK is data uploader for [ohmage-OMH](https://github.com/smalldatalab/o
   s.subspec 'RKSupport' do |rks|
     rks.source_files = 'Source/RKSupport/**/*'
     rks.dependency 'OhmageOMHSDK/Core'
-    rks.dependency 'ResearchKit', '~> 1.3.1'
+    rks.dependency 'ResearchKit', '~> 1.3'
   end
 
   s.subspec 'RSRPSupport' do |rsrp|

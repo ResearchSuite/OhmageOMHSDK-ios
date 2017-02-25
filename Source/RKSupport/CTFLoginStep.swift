@@ -39,11 +39,13 @@ open class CTFLoginStep: ORKFormStep {
     }
     
     
-    open func stepViewControllerClass() -> AnyClass {
+    open override func stepViewControllerClass() -> AnyClass {
         return self.loginViewControllerClass
     }
     
     open var loginViewControllerClass: AnyClass!
+    
+    open var loginViewControllerDidLoad: ((UIViewController) -> ())?
     
     var loginButtonTitle: String!
     var forgotPasswordButtonTitle: String?
@@ -56,6 +58,7 @@ open class CTFLoginStep: ORKFormStep {
          passwordFieldName: String = "Password",
          passwordFieldAnswerFormat: ORKAnswerFormat = CTFLoginStep.passwordAnswerFormat(),
          loginViewControllerClass: AnyClass = CTFLoginStepViewController.self,
+         loginViewControllerDidLoad: ((UIViewController) -> ())? = nil,
          loginButtonTitle: String = "Login",
          forgotPasswordButtonTitle: String?) {
         
@@ -79,6 +82,7 @@ open class CTFLoginStep: ORKFormStep {
         self.forgotPasswordButtonTitle = forgotPasswordButtonTitle
         
         self.loginViewControllerClass = loginViewControllerClass
+        self.loginViewControllerDidLoad = loginViewControllerDidLoad
         
     }
     

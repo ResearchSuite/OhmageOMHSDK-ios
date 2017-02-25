@@ -15,16 +15,38 @@ open class CTFLoginStepViewController: ORKFormStepViewController {
     
     public static let LoggedInResultIdentifier = "IsLoggedInResult"
     public var loggedIn: Bool?
+    open var activityIndicator: UIActivityIndicatorView?
 
     override open func viewDidLoad() {
         
         super.viewDidLoad()
         
+        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        self.view.addSubview(activityIndicator)
+        activityIndicator.center = self.view.center
+        self.activityIndicator = activityIndicator
+        
         if let step = self.step as? CTFLoginStep {
             self.continueButtonTitle = step.loginButtonTitle
             self.skipButtonTitle = step.forgotPasswordButtonTitle
+            
+            step.loginViewControllerDidLoad?(self)
         }
         
+    }
+    
+    open var isLoading: Bool = false {
+        didSet {
+            if isLoading != oldValue {
+                if isLoading {
+                    self.activityIndicator?.startAnimating()
+                    
+                }
+                else {
+                    self.activityIndicator?.stopAnimating()
+                }
+            }
+        }
     }
     
     override open var result: ORKStepResult? {
