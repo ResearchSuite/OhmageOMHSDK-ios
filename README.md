@@ -24,6 +24,8 @@ The example also depends upon two plist files:
     * longitude - in degrees
     * distance - in meters
 
+Both .plist files need to be added to the Example/OhmageOMHSDK directory.
+
 ## Requirements
 
 ## Installation
