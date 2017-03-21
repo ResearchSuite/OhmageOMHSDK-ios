@@ -13,6 +13,17 @@ OhmageOMHSDK is data uploader for [ohmage-OMH](https://github.com/smalldatalab/o
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
+The example also depends upon two plist files: 
+  * OMHClient.plist, which contains the following:
+    * OHMBaseURL - the URL for the OHM DSU endpoint
+    * OHMClientID - the application's OAuth Client ID
+    * OHMClientSecret - the application's OAuth Client Secret
+  * Locations.plist, which is an array containing circular region descriptions
+    * name - A label which will be sent to the server
+    * lattitude - in degrees
+    * longitude - in degrees
+    * distance - in meters
+
 ## Requirements
 
 ## Installation
