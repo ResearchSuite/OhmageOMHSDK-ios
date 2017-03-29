@@ -34,6 +34,7 @@ public class OhmageOMHManager: NSObject {
     
     var credentialsQueue: DispatchQueue!
     var credentialStore: OhmageOMHSDKCredentialStore!
+    var credentialStoreQueue: DispatchQueue!
     var accessToken: String?
     var refreshToken: String?
     
@@ -61,20 +62,27 @@ public class OhmageOMHManager: NSObject {
     
     
     //returns true if configured
-    static public func config(baseURL: String, clientID: String, clientSecret: String, queueStorageDirectory: String, store: OhmageOMHSDKCredentialStore, logger: OhmageOMHLogger? = nil) -> Bool {
-        return staticQueue.sync {
-            guard _sharedManager == nil,
-                let newManager = OhmageOMHManager(baseURL: baseURL, clientID: clientID, clientSecret: clientSecret, queueStorageDirectory: queueStorageDirectory, store: store) else {
-                    return false
-            }
-            
-            _sharedManager = newManager
-            _sharedManager?.logger = logger
-            return true
-        }
-    }
+//    static public func config(baseURL: String, clientID: String, clientSecret: String, queueStorageDirectory: String, store: OhmageOMHSDKCredentialStore, logger: OhmageOMHLogger? = nil) -> Bool {
+//        return staticQueue.sync {
+//            guard _sharedManager == nil,
+//                let newManager = OhmageOMHManager(baseURL: baseURL, clientID: clientID, clientSecret: clientSecret, queueStorageDirectory: queueStorageDirectory, store: store) else {
+//                    return false
+//            }
+//            
+//            _sharedManager = newManager
+//            _sharedManager?.logger = logger
+//            return true
+//        }
+//    }
     
-    private init?(baseURL: String, clientID: String, clientSecret: String, queueStorageDirectory: String, store: OhmageOMHSDKCredentialStore) {
+    public init?(
+        baseURL: String,
+        clientID: String,
+        clientSecret: String,
+        queueStorageDirectory: String,
+        store: OhmageOMHSDKCredentialStore,
+        logger: OhmageOMHLogger? = nil
+        ) {
         
         self.uploadQueue = DispatchQueue(label: "UploadQueue")
         
@@ -84,6 +92,7 @@ public class OhmageOMHManager: NSObject {
         self.credentialsQueue = DispatchQueue(label: "CredentialsQueue")
         
         self.credentialStore = store
+        self.credentialStoreQueue = DispatchQueue(label: "CredentialStoreQueue")
         
         if let accessToken = self.credentialStore.get(key: kAccessToken) as? String {
             self.accessToken = accessToken
@@ -100,6 +109,8 @@ public class OhmageOMHManager: NSObject {
         }
         
         self.reachabilityManager = reachabilityManager
+        
+        self.logger = logger
         
         super.init()
         
@@ -200,8 +211,10 @@ public class OhmageOMHManager: NSObject {
     
     private func clearCredentials() {
         self.credentialsQueue.sync {
-            self.credentialStore.set(value: nil, key: kAccessToken)
-            self.credentialStore.set(value: nil, key: kRefreshToken)
+            self.credentialStoreQueue.async {
+                self.credentialStore.set(value: nil, key: kAccessToken)
+                self.credentialStore.set(value: nil, key: kRefreshToken)
+            }
             self.accessToken = nil
             self.refreshToken = nil
             return
@@ -210,8 +223,10 @@ public class OhmageOMHManager: NSObject {
     
     private func setCredentials(accessToken: String, refreshToken: String) {
         self.credentialsQueue.sync {
-            self.credentialStore.set(value: accessToken as NSString, key: kAccessToken)
-            self.credentialStore.set(value: refreshToken as NSString, key: kRefreshToken)
+            self.credentialStoreQueue.async {
+                self.credentialStore.set(value: accessToken as NSString, key: kAccessToken)
+                self.credentialStore.set(value: refreshToken as NSString, key: kRefreshToken)
+            }
             self.accessToken = accessToken
             self.refreshToken = refreshToken
             return

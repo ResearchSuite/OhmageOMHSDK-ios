@@ -11,10 +11,13 @@ import OhmageOMHSDK
 
 class LocationManager: NSObject, CLLocationManagerDelegate {
     
-    static let sharedInstance = LocationManager()
+//    static let sharedInstance = LocationManager()
     var locationManager: CLLocationManager!
+    let ohmageManager: OhmageOMHManager
     
-    private override init() {
+    public init(ohmageManager: OhmageOMHManager) {
+        
+        self.ohmageManager = ohmageManager
         
         super.init()
         
@@ -93,7 +96,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
             let log2 = "Adding datapoint: \(locationSample.toDict().debugDescription)"
             LogManager.sharedInstance.log(log2)
             
-            OhmageOMHManager.shared.addDatapoint(datapoint: locationSample, completion: { (error) in
+            self.ohmageManager.addDatapoint(datapoint: locationSample, completion: { (error) in
                 
                 debugPrint(error)
                 
@@ -116,7 +119,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         let log2 = "Adding datapoint: \(logicalLocation.toDict().debugDescription)"
         LogManager.sharedInstance.log(log2)
         
-        OhmageOMHManager.shared.addDatapoint(datapoint: logicalLocation, completion: { (error) in
+        self.ohmageManager.addDatapoint(datapoint: logicalLocation, completion: { (error) in
             
             debugPrint(error)
             
@@ -139,7 +142,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         LogManager.sharedInstance.log(log2)
         
         
-        OhmageOMHManager.shared.addDatapoint(datapoint: logicalLocation, completion: { (error) in
+        self.ohmageManager.addDatapoint(datapoint: logicalLocation, completion: { (error) in
             
             debugPrint(error)
             
@@ -165,7 +168,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         let log2 = "Adding datapoint: \(visitSample.toDict().debugDescription)"
         LogManager.sharedInstance.log(log2)
         
-        OhmageOMHManager.shared.addDatapoint(datapoint: visitSample, completion: { (error) in
+        self.ohmageManager.addDatapoint(datapoint: visitSample, completion: { (error) in
             
             debugPrint(error)
             

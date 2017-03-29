@@ -5,9 +5,10 @@ target 'OhmageOMHSDK_Example' do
 
   pod 'OhmageOMHSDK', :path => '../'
   pod 'OhmageOMHSDK/RKSupport', :path => '../'
+  pod 'OhmageOMHSDK/RSTBSupport', :path => '../'
   pod 'OhmageOMHSDK/RSRPSupport', :path => '../'
 
-  pod 'ResearchKit', '~> 1.3'
+  pod 'ResearchKit', '~> 1.4'
 
   target 'OhmageOMHSDK_Tests' do
     inherit! :search_paths

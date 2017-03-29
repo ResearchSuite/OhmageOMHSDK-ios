@@ -40,10 +40,12 @@ open class CTFLoginStepViewController: ORKFormStepViewController {
             if isLoading != oldValue {
                 if isLoading {
                     self.activityIndicator?.startAnimating()
+                    self.view.isUserInteractionEnabled = false
                     
                 }
                 else {
                     self.activityIndicator?.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                 }
             }
         }
