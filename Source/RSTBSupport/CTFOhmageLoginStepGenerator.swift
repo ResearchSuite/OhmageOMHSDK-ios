@@ -30,6 +30,8 @@ open class CTFOhmageLoginStepGenerator: RSTBBaseStepGenerator {
         
         let step = CTFOhmageLoginStep(
             identifier: customStepDescriptor.identifier,
+            title: customStepDescriptor.title,
+            text: customStepDescriptor.text,
             ohmageManager: ohmageProvider.getOhmageManager()
         )
         

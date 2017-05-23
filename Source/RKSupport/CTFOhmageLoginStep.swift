@@ -11,8 +11,8 @@ import UIKit
 open class CTFOhmageLoginStep: CTFLoginStep {
     
     public init(identifier: String,
-                title: String = "Log in",
-                text: String = "Please log in",
+                title: String? = nil,
+                text: String? = nil,
                 forgotPasswordButtonTitle: String? = nil,
                 ohmageManager: OhmageOMHManager? = nil) {
         
@@ -23,6 +23,9 @@ open class CTFOhmageLoginStep: CTFLoginStep {
             }
             
         }
+        
+        let title = title ?? "Log in"
+        let text = text ?? "Please log in"
         
         super.init(identifier: identifier,
                    title: title,

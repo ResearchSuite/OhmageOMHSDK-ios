@@ -12,24 +12,43 @@ import ResearchSuiteResultsProcessor
 
 open class ORBEManager: RSRPBackEnd {
     
+    let ohmageManager: OhmageOMHManager
     let transformers: [ORBEIntermediateDatapointTransformer.Type]
+    let metadata: [String: Any]?
     
-    public init() {
-        self.transformers = [ORBEDefaultTransformer.self]
-    }
-    
-    public init(transformers: [ORBEIntermediateDatapointTransformer.Type]) {
+    public init(ohmageManager: OhmageOMHManager, transformers: [ORBEIntermediateDatapointTransformer.Type] = [ORBEDefaultTransformer.self], metadata: [String: Any]? = nil) {
         
+        self.ohmageManager = ohmageManager
         self.transformers = transformers
+        self.metadata = metadata
         
     }
     
     open func add(intermediateResult: RSRPIntermediateResult) {
         
+        if let metadata = self.metadata {
+            
+            if var userInfo = intermediateResult.userInfo {
+                metadata.forEach({ (pair) in
+                    userInfo[pair.0] = pair.1
+                })
+                
+                intermediateResult.userInfo = userInfo
+                
+            }
+            else {
+                intermediateResult.userInfo = metadata
+            }
+            
+        }
+        
         for transformer in self.transformers {
             if let datapoint: OMHDataPoint = transformer.transform(intermediateResult: intermediateResult) {
+                
+                
+                
                 //submit data point
-                OhmageOMHManager.shared.addDatapoint(datapoint: datapoint) { (error) in
+                self.ohmageManager.addDatapoint(datapoint: datapoint) { (error) in
                     debugPrint(error)
                 }
             }
