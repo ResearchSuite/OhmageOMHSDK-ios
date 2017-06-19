@@ -49,7 +49,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ORKTaskViewCo
 //        // Start significant-change location updates
 //        self.locationManager.startMonitoringSignificantLocationChanges()
         
-        OhmageOMHManager.shared.onDatapointUploaded = { _ in
+        AppDelegate.appDelegate.ohmageManager.onDatapointUploaded = { _ in
             self.updateUI()
         }
         
@@ -62,11 +62,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ORKTaskViewCo
     }
     
     func updateUI() {
-        self.signInButton.isEnabled = !OhmageOMHManager.shared.isSignedIn
-        self.signOutButton.isEnabled = OhmageOMHManager.shared.isSignedIn
+        self.signInButton.isEnabled = !AppDelegate.appDelegate.ohmageManager.isSignedIn
+        self.signOutButton.isEnabled = AppDelegate.appDelegate.ohmageManager.isSignedIn
         
         self.latestErrorTextView.text = self.latestError.debugDescription
-        self.itemCountLabel.text = "Pending item count \(OhmageOMHManager.shared.queueItemCount)"
+        self.itemCountLabel.text = "Pending item count \(AppDelegate.appDelegate.ohmageManager.queueItemCount)"
         
     }
 
@@ -94,7 +94,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ORKTaskViewCo
         let log = "Signing out"
         LogManager.sharedInstance.log(log)
         
-        OhmageOMHManager.shared.signOut { (error) in
+        AppDelegate.appDelegate.ohmageManager.signOut { (error) in
             self.latestError = error
             DispatchQueue.main.async {
                 self.updateUI()
@@ -114,7 +114,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ORKTaskViewCo
         let log = "Adding datapoint: \(pam.toDict().debugDescription)"
         LogManager.sharedInstance.log(log)
         
-        OhmageOMHManager.shared.addDatapoint(datapoint: pam, completion: { (error) in
+        AppDelegate.appDelegate.ohmageManager.addDatapoint(datapoint: pam, completion: { (error) in
             self.latestError = error
             DispatchQueue.main.async {
                 self.updateUI()
@@ -134,7 +134,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ORKTaskViewCo
         let log = "Adding datapoint: \(image.toDict().debugDescription)"
         LogManager.sharedInstance.log(log)
         
-        OhmageOMHManager.shared.addDatapoint(datapoint: image, completion: { (error) in
+        AppDelegate.appDelegate.ohmageManager.addDatapoint(datapoint: image, completion: { (error) in
             self.latestError = error
             DispatchQueue.main.async {
                 self.updateUI()
@@ -149,7 +149,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ORKTaskViewCo
         let consentLog = "Adding datapoint: \(consent.toDict().debugDescription)"
         LogManager.sharedInstance.log(consentLog)
 
-        OhmageOMHManager.shared.addDatapoint(datapoint: consent, completion: { (error) in
+        AppDelegate.appDelegate.ohmageManager.addDatapoint(datapoint: consent, completion: { (error) in
             self.latestError = error
             DispatchQueue.main.async {
                 self.updateUI()
@@ -161,7 +161,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ORKTaskViewCo
     @IBAction func forceUploadAction(_ sender: Any) {
         
         do {
-            try OhmageOMHManager.shared.startUploading()
+            try AppDelegate.appDelegate.ohmageManager.startUploading()
         } catch let error {
             debugPrint(error)
         }

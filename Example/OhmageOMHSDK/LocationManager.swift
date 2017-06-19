@@ -57,12 +57,12 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
                 guard let name = locationDict["name"] as? NSString,
                     let lat = locationDict["latitude"]  as? NSNumber,
                     let long = locationDict["longitude"]  as? NSNumber,
-                    let distance = locationDict["distance"]  as? NSNumber else {
+                    let radius = locationDict["radius"]  as? NSNumber else {
                         return
                 }
                 
                 let center = CLLocationCoordinate2D(latitude: lat.doubleValue, longitude: long.doubleValue)
-                let locationRegion = CLCircularRegion(center: center, radius: distance.doubleValue, identifier: name as String)
+                let locationRegion = CLCircularRegion(center: center, radius: radius.doubleValue, identifier: name as String)
                 
                 let log = "Starting to monitor location: \(locationRegion.debugDescription)"
                 LogManager.sharedInstance.log(log)
