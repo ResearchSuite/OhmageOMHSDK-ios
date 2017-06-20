@@ -10,6 +10,8 @@ target 'OhmageOMHSDK_Example' do
 
   pod 'ResearchKit', '~> 1.4'
 
+  pod 'OMHClient', :path => '../../OMHClient-ios'
+
   target 'OhmageOMHSDK_Tests' do
     inherit! :search_paths
 

@@ -80,7 +80,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ORKTaskViewCo
         let log = "Signing in"
         LogManager.sharedInstance.log(log)
         
-        let loginStep = CTFOhmageLoginStep(identifier: "loginStepIdentifier")
+//        let loginStep = CTFOhmageLoginStep(identifier: "loginStepIdentifier")
+        let loginStep = CTFOhmageOAuthLoginStep(
+            identifier: "loginStepIdentifier",
+            title: "Log In",
+            text: "Log In",
+            ohmageManager: AppDelegate.appDelegate.ohmageManager
+        )
         
         let task = ORKOrderedTask(identifier: ViewController.LoginTaskIdentifier, steps: [loginStep])
         let taskViewController = ORKTaskViewController(task: task, taskRun: nil)
