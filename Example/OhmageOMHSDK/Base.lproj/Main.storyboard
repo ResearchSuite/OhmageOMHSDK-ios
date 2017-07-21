@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IwU-8C-Xo0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F2073" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IwU-8C-Xo0">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -84,86 +85,93 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qCH-U6-QSz">
-                                <rect key="frame" x="164" y="60" width="47" height="30"/>
-                                <state key="normal" title="Sign In"/>
-                                <connections>
-                                    <action selector="signInAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="CSR-fJ-U5K"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ag7-cE-Fhu">
-                                <rect key="frame" x="145" y="200" width="85" height="30"/>
-                                <state key="normal" title="Upload PAM"/>
-                                <connections>
-                                    <action selector="uploadPAMAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ncw-Zo-os1"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5uA-cF-1np">
-                                <rect key="frame" x="158" y="130" width="60" height="30"/>
-                                <state key="normal" title="Sign Out"/>
-                                <connections>
-                                    <action selector="signOutAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="NON-kE-Eio"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="uUs-po-Gfi">
+                                <rect key="frame" x="16" y="20" width="343" height="369"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qCH-U6-QSz">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="52.5"/>
+                                        <state key="normal" title="Sign In"/>
+                                        <connections>
+                                            <action selector="signInAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="CSR-fJ-U5K"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="svi-vH-XcP">
+                                        <rect key="frame" x="0.0" y="52.5" width="343" height="53"/>
+                                        <state key="normal" title="Enroll In Study"/>
+                                        <connections>
+                                            <action selector="enrollInStudy:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="kU2-pv-gAI"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5uA-cF-1np">
+                                        <rect key="frame" x="0.0" y="105.5" width="343" height="52.5"/>
+                                        <state key="normal" title="Sign Out"/>
+                                        <connections>
+                                            <action selector="signOutAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="NON-kE-Eio"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ag7-cE-Fhu">
+                                        <rect key="frame" x="0.0" y="158" width="343" height="53"/>
+                                        <state key="normal" title="Upload PAM"/>
+                                        <connections>
+                                            <action selector="uploadPAMAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ncw-Zo-os1"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3og-3j-PLU">
+                                        <rect key="frame" x="0.0" y="211" width="343" height="52.5"/>
+                                        <state key="normal" title="Upload Image"/>
+                                        <connections>
+                                            <action selector="uploadImageAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="FCX-sc-fNg"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2eW-iA-3iz">
+                                        <rect key="frame" x="0.0" y="263.5" width="343" height="53"/>
+                                        <state key="normal" title="Upload Consent"/>
+                                        <connections>
+                                            <action selector="uploadConsentAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="gvF-NQ-FcT"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nPW-rM-nUg">
+                                        <rect key="frame" x="0.0" y="316.5" width="343" height="52.5"/>
+                                        <state key="normal" title="Force Upload"/>
+                                        <connections>
+                                            <action selector="forceUploadAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Xzt-c3-e6g"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pending item count: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ifO-cX-fEk">
-                                <rect key="frame" x="104" y="577" width="168" height="21"/>
+                                <rect key="frame" x="104.5" y="577.5" width="167.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nPW-rM-nUg">
-                                <rect key="frame" x="142" y="410" width="92" height="30"/>
-                                <state key="normal" title="Force Upload"/>
-                                <connections>
-                                    <action selector="forceUploadAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Xzt-c3-e6g"/>
-                                </connections>
-                            </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="V3A-uq-yF4">
-                                <rect key="frame" x="0.0" y="448" width="375" height="121"/>
+                                <rect key="frame" x="0.0" y="389" width="375" height="180"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="b1U-qc-2AC"/>
+                                </constraints>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3og-3j-PLU">
-                                <rect key="frame" x="140" y="270" width="95" height="30"/>
-                                <state key="normal" title="Upload Image"/>
-                                <connections>
-                                    <action selector="uploadImageAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="FCX-sc-fNg"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2eW-iA-3iz">
-                                <rect key="frame" x="132" y="340" width="111" height="30"/>
-                                <state key="normal" title="Upload Consent"/>
-                                <connections>
-                                    <action selector="uploadConsentAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="gvF-NQ-FcT"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="ifO-cX-fEk" secondAttribute="bottom" constant="20" id="0lU-Qx-qmb"/>
-                            <constraint firstItem="2eW-iA-3iz" firstAttribute="top" secondItem="3og-3j-PLU" secondAttribute="bottom" constant="40" id="1vX-Fr-q7N"/>
-                            <constraint firstItem="5uA-cF-1np" firstAttribute="top" secondItem="qCH-U6-QSz" secondAttribute="bottom" constant="40" id="A6j-OE-Rf2"/>
-                            <constraint firstItem="ag7-cE-Fhu" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="BZj-v1-tjL"/>
-                            <constraint firstItem="5uA-cF-1np" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="MUL-DW-q09"/>
+                            <constraint firstItem="uUs-po-Gfi" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="2t4-DD-oiT"/>
+                            <constraint firstItem="uUs-po-Gfi" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="6YY-HV-yDJ"/>
                             <constraint firstItem="ifO-cX-fEk" firstAttribute="top" secondItem="V3A-uq-yF4" secondAttribute="bottom" constant="8" id="Nu9-Cd-4dT"/>
+                            <constraint firstItem="V3A-uq-yF4" firstAttribute="top" secondItem="uUs-po-Gfi" secondAttribute="bottom" id="OAm-J9-oj9"/>
                             <constraint firstItem="V3A-uq-yF4" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="PL3-xc-sb5"/>
-                            <constraint firstItem="nPW-rM-nUg" firstAttribute="top" secondItem="2eW-iA-3iz" secondAttribute="bottom" constant="40" id="Ptx-Sy-HV8"/>
-                            <constraint firstItem="3og-3j-PLU" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="TOv-kD-f15"/>
-                            <constraint firstItem="3og-3j-PLU" firstAttribute="top" secondItem="ag7-cE-Fhu" secondAttribute="bottom" constant="40" id="Yhd-iJ-XAb"/>
-                            <constraint firstItem="qCH-U6-QSz" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="40" id="fh7-aR-7tA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="uUs-po-Gfi" secondAttribute="trailing" id="hez-px-N5s"/>
                             <constraint firstItem="V3A-uq-yF4" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" id="hs6-h8-6ae"/>
-                            <constraint firstItem="qCH-U6-QSz" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="jVT-yh-rsN"/>
                             <constraint firstItem="ifO-cX-fEk" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="liU-km-LHj"/>
-                            <constraint firstItem="nPW-rM-nUg" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="lyg-ql-qCf"/>
-                            <constraint firstItem="ag7-cE-Fhu" firstAttribute="top" secondItem="5uA-cF-1np" secondAttribute="bottom" constant="40" id="rIk-XE-znb"/>
-                            <constraint firstItem="2eW-iA-3iz" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="rW8-q3-Xi3"/>
-                            <constraint firstItem="V3A-uq-yF4" firstAttribute="top" secondItem="nPW-rM-nUg" secondAttribute="bottom" constant="8" id="zgk-rP-JAh"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="L9I-5x-FQe"/>
                     <connections>
+                        <outlet property="enrollButton" destination="svi-vH-XcP" id="6iU-95-zGA"/>
                         <outlet property="itemCountLabel" destination="ifO-cX-fEk" id="Ony-Bm-6FJ"/>
                         <outlet property="latestErrorTextView" destination="V3A-uq-yF4" id="Bxf-CK-efW"/>
                         <outlet property="signInButton" destination="qCH-U6-QSz" id="ILa-d4-Vk5"/>

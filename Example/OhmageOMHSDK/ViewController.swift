@@ -13,9 +13,6 @@ import ResearchKit
 
 class ViewController: UIViewController, CLLocationManagerDelegate, ORKTaskViewControllerDelegate {
 
-    
-
-    
     //need to add a delegate method to notify application that a datapoint
     //was successfully uploaded
     //note that this
@@ -24,6 +21,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ORKTaskViewCo
     
     
     @IBOutlet weak var signInButton: UIButton!
+    @IBOutlet weak var enrollButton: UIButton!
     @IBOutlet weak var signOutButton: UIButton!
     @IBOutlet weak var uploadPAMButton: UIButton!
     @IBOutlet weak var uploadImageButton: UIButton!
@@ -64,6 +62,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ORKTaskViewCo
     func updateUI() {
         self.signInButton.isEnabled = !AppDelegate.appDelegate.ohmageManager.isSignedIn
         self.signOutButton.isEnabled = AppDelegate.appDelegate.ohmageManager.isSignedIn
+        self.enrollButton.isEnabled = AppDelegate.appDelegate.ohmageManager.isSignedIn
         
         self.latestErrorTextView.text = self.latestError.debugDescription
         self.itemCountLabel.text = "Pending item count \(AppDelegate.appDelegate.ohmageManager.queueItemCount)"
@@ -88,11 +87,23 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ORKTaskViewCo
             ohmageManager: AppDelegate.appDelegate.ohmageManager
         )
         
-        let task = ORKOrderedTask(identifier: ViewController.LoginTaskIdentifier, steps: [loginStep])
+        let thanksStep = ORKInstructionStep(identifier: "thanksStep")
+        thanksStep.title = "You did it!"
+        
+        let task = ORKOrderedTask(identifier: ViewController.LoginTaskIdentifier, steps: [loginStep, thanksStep])
         let taskViewController = ORKTaskViewController(task: task, taskRun: nil)
         taskViewController.delegate = self
         present(taskViewController, animated: true, completion: nil)
         
+    }
+    
+    @IBAction func enrollInStudy(_ sender: Any) {
+        AppDelegate.appDelegate.ohmageManager.enrollUserInStudy(studyIdentifier: AppDelegate.StudyIdentifier) { (error) in
+            self.latestError = error
+            DispatchQueue.main.async {
+                self.updateUI()
+            }
+        }
     }
 
     @IBAction func signOutAction(_ sender: Any) {

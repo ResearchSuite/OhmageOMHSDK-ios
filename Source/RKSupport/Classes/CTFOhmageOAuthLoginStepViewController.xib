@@ -18,20 +18,26 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ilu-8o-he1">
-                    <rect key="frame" x="127" y="617" width="121" height="30"/>
-                    <state key="normal" title="Login To Ohmage"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xsY-Ek-7zm" userLabel="signInButton">
+                    <rect key="frame" x="21" y="547" width="333" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="333" id="wTv-wL-YEp"/>
+                    </constraints>
+                    <state key="normal" title="Button" image="signInButton"/>
                     <connections>
-                        <action selector="loginPressedWithSender:" destination="-1" eventType="touchUpInside" id="Rsa-3g-VDo"/>
+                        <action selector="loginPressedWithSender:" destination="-1" eventType="touchUpInside" id="Vwn-yq-8T1"/>
                     </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="ilu-8o-he1" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="F9r-Ru-x0e"/>
-                <constraint firstAttribute="bottom" secondItem="ilu-8o-he1" secondAttribute="bottom" constant="20" id="ixj-uj-25c"/>
+                <constraint firstItem="xsY-Ek-7zm" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="4Pz-o8-TXg"/>
+                <constraint firstAttribute="bottom" secondItem="xsY-Ek-7zm" secondAttribute="bottom" constant="40" id="9xC-GP-trM"/>
             </constraints>
-            <point key="canvasLocation" x="-244" y="29"/>
+            <point key="canvasLocation" x="-244.5" y="28.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="signInButton" width="333" height="80"/>
+    </resources>
 </document>

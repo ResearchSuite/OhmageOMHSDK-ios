@@ -199,6 +199,25 @@ public class OhmageOMHManager: NSObject {
         }
     }
     
+    public func enrollUserInStudy(studyIdentifier: String, completion: @escaping ((Error?) -> ())) {
+        if !self.isSignedIn {
+            completion(OhmageOMHError.notSignedIn)
+            return
+        }
+        
+        if let url = self.client.studyEnrollmentURL(studyIdentifier: studyIdentifier) {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url, options: [:], completionHandler: { success in
+                    completion(nil)
+                })
+            } else {
+                // Fallback on earlier versions
+                UIApplication.shared.openURL(url)
+                completion(nil)
+            }
+        }
+    }
+    
     func getQueryStringParameter(url: String, param: String) -> String? {
         guard let url = URLComponents(string: url) else { return nil }
         return url.queryItems?.first(where: { $0.name == param })?.value

@@ -14,32 +14,30 @@ open class ORBEManager: RSRPBackEnd {
     
     let ohmageManager: OhmageOMHManager
     let transformers: [ORBEIntermediateDatapointTransformer.Type]
-    let metadata: [String: Any]?
+    open var metadata: [String: Any] = [:]
     
     public init(ohmageManager: OhmageOMHManager, transformers: [ORBEIntermediateDatapointTransformer.Type] = [ORBEDefaultTransformer.self], metadata: [String: Any]? = nil) {
         
         self.ohmageManager = ohmageManager
         self.transformers = transformers
-        self.metadata = metadata
+        self.metadata = metadata ?? [:]
         
     }
     
     open func add(intermediateResult: RSRPIntermediateResult) {
         
-        if let metadata = self.metadata {
+        let metadata = self.metadata
+        
+        if var userInfo = intermediateResult.userInfo {
+            metadata.forEach({ (pair) in
+                userInfo[pair.0] = pair.1
+            })
             
-            if var userInfo = intermediateResult.userInfo {
-                metadata.forEach({ (pair) in
-                    userInfo[pair.0] = pair.1
-                })
-                
-                intermediateResult.userInfo = userInfo
-                
-            }
-            else {
-                intermediateResult.userInfo = metadata
-            }
+            intermediateResult.userInfo = userInfo
             
+        }
+        else {
+            intermediateResult.userInfo = metadata
         }
         
         for transformer in self.transformers {
