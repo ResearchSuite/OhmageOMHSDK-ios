@@ -59,7 +59,7 @@ public class OhmageOMHManager: NSObject {
     }
     
     static private var _sharedManager: OhmageOMHManager?
-    private var oauthCompletion: ((Error?) -> ())?
+    private var redirectCompletion: ((Error?) -> ())?
     
     
     //returns true if configured
@@ -181,7 +181,7 @@ public class OhmageOMHManager: NSObject {
         
     }
     
-    public func beginOAuthSignIn(completion: @escaping ((Error?) -> ())) {
+    public func beginRedirectSignIn(completion: @escaping ((Error?) -> ())) {
         
         if self.isSignedIn {
             completion(OhmageOMHError.alreadySignedIn)
@@ -189,7 +189,7 @@ public class OhmageOMHManager: NSObject {
         }
         
         if let url = self.client.OAuthURL() {
-            self.oauthCompletion = completion
+            self.redirectCompletion = completion
             if #available(iOS 10.0, *) {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             } else {
@@ -230,7 +230,7 @@ public class OhmageOMHManager: NSObject {
                 
                 if let err = error {
                     
-                    self.oauthCompletion?(err)
+                    self.redirectCompletion?(err)
                     return
                     
                 }
@@ -240,7 +240,7 @@ public class OhmageOMHManager: NSObject {
                 }
                 
                 self.reachabilityManager.startListening()
-                self.oauthCompletion?(nil)
+                self.redirectCompletion?(nil)
                 
             }
         }

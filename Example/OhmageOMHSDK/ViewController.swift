@@ -10,6 +10,7 @@ import UIKit
 import OhmageOMHSDK
 import CoreLocation
 import ResearchKit
+import ResearchSuiteExtensions
 
 class ViewController: UIViewController, CLLocationManagerDelegate, ORKTaskViewControllerDelegate {
 
@@ -80,12 +81,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ORKTaskViewCo
         LogManager.sharedInstance.log(log)
         
 //        let loginStep = CTFOhmageLoginStep(identifier: "loginStepIdentifier")
-        let loginStep = CTFOhmageOAuthLoginStep(
+//        let loginStep = CTFOhmageOAuthLoginStep(
+//            identifier: "loginStepIdentifier",
+//            title: "Log In",
+//            text: "Log In",
+//            ohmageManager: AppDelegate.appDelegate.ohmageManager
+//        )
+        
+        let loginStep = RSRedirectStep(
             identifier: "loginStepIdentifier",
-            title: "Log In",
-            text: "Log In",
-            ohmageManager: AppDelegate.appDelegate.ohmageManager
+            title: "Authenticate with Ohmage",
+            text: nil,
+            buttonText: "Authenticate",
+            delegate: AppDelegate.appDelegate.ohmageManager
         )
+        
         
         let thanksStep = ORKInstructionStep(identifier: "thanksStep")
         thanksStep.title = "You did it!"

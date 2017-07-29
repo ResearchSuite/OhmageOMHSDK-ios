@@ -43,6 +43,7 @@ OhmageOMHSDK is data uploader for [ohmage-OMH](https://github.com/smalldatalab/o
     rks.resources = 'Source/RKSupport/Assets/Ohmage.xcassets'
     rks.dependency 'OhmageOMHSDK/Core'
     rks.dependency 'ResearchKit', '~> 1.4'
+    rks.dependency 'ResearchSuiteExtensions', '~> 0.2'
   end
 
   s.subspec 'RSTBSupport' do |rstb|
