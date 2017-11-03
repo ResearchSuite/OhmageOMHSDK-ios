@@ -98,7 +98,6 @@ public class OhmageOMHManager: NSObject {
         if let accessToken = self.credentialStore.get(key: kAccessToken) as? String {
             self.accessToken = accessToken
         }
-        
         if let refreshToken = self.credentialStore.get(key: kRefreshToken) as? String {
             self.refreshToken = refreshToken
         }
@@ -394,12 +393,19 @@ public class OhmageOMHManager: NSObject {
                                 
                                 if let refreshToken = self.refreshToken {
                                     self.client.refreshAccessToken(refreshToken: refreshToken, completion: { (signInResponse, error) in
-                                        if error != nil {
+                                    
+                                        //only clear credentials in case of invalid refresh token
+                                        //otherwise, ignore for now
+                                        //may need to revisit this
+                                        switch error {
+                                        case .some(OMHClientError.invalidRefreshToken):
                                             self.clearCredentials()
-                                        }
-                                        else if let response = signInResponse {
-                                            self.setCredentials(accessToken: response.accessToken, refreshToken: response.refreshToken)
-                                            self.upload()
+                                            return
+                                        default:
+                                            if let response = signInResponse {
+                                                self.setCredentials(accessToken: response.accessToken, refreshToken: response.refreshToken)
+                                                self.upload()
+                                            }
                                         }
                                 
                                     })
@@ -543,14 +549,18 @@ public class OhmageOMHManager: NSObject {
                             
                             if let refreshToken = self.refreshToken {
                                 self.client.refreshAccessToken(refreshToken: refreshToken, completion: { (signInResponse, error) in
-                                    if error != nil {
+                                    //only clear credentials in case of invalid refresh token
+                                    //otherwise, ignore for now
+                                    //may need to revisit this
+                                    switch error {
+                                    case .some(OMHClientError.invalidRefreshToken):
                                         self.clearCredentials()
                                         return
-                                    }
-                                    else if let response = signInResponse {
-                                        self.setCredentials(accessToken: response.accessToken, refreshToken: response.refreshToken)
-                                        
-                                        self.uploadFromMemory()
+                                    default:
+                                        if let response = signInResponse {
+                                            self.setCredentials(accessToken: response.accessToken, refreshToken: response.refreshToken)
+                                            self.upload()
+                                        }
                                     }
                                     
                                 })
