@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'OhmageOMHSDK'
-  s.version          = '0.5.0'
+  s.version          = '0.5.1'
   s.summary          = 'OhmageOMHSDK is data uploader for ohmage-OMH.'
 
 # This description is used to generate tags and improve search results.
