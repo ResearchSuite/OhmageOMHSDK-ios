@@ -31,7 +31,7 @@ open class ORBEDefaultResult: RSRPIntermediateResult, RSRPFrontEndTransformer {
         
         let schema = OMHSchema(name: schemaName, version: schemaVersion, namespace: schemaNamespace)
     
-        guard let resultDict = RSRPDefaultResultHelpers.extractResults(parameters: parameters) else {
+        guard let resultDict = RSRPDefaultResultHelpers.extractResults(parameters: parameters, forSerialization: true) else {
             return nil
         }
         
